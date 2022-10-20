@@ -1,3 +1,4 @@
+from turtle import shape
 import numpy as np
 
 class RBFRegression():
@@ -24,7 +25,7 @@ class RBFRegression():
         self.K = centers.shape[0]
 
         # Remember that we have K weights and 1 bias.
-        self.parameters = np.ones((self.K + 1, 1), dtype=np.float)
+        self.parameters = np.ones((self.K + 1, 1), dtype=np.float64) #float changed 
 
     def _rbf_2d(self, X, rbf_i):
         """ This private method computes the output of the i'th 2D radial basis function given the inputs.
@@ -74,7 +75,12 @@ class RBFRegression():
 
         # ====================================================
         # TODO: Implement your solution within the box
+        pred_Y = np.empty(X.shape[0],1)
+        pred_Y.fill(self.parameters[0])
+        arr = np.sum(self._rbf_2d)
+        pred_Y = np.add(pred_Y,arr)
         
+        return pred_Y
         # ====================================================
     
     def fit_with_l2_regularization(self, train_X, train_Y, l2_coef):
@@ -99,7 +105,12 @@ class RBFRegression():
 
         # ====================================================
         # TODO: Implement your solution within the box
+        X = np.empty([train_X.shape[0],self.K+1])
+        X[:, 0] = 1
         
+        for i in range (1,self.K +1):
+            X[:,i] = self._rbf_2d(X, i-1)
+        self.parameters = np.linalg(np.linalg.inv(X.T @ X+ l2_coef@ np.identity(self.K+1)) @ X.T @train_Y)
         # ====================================================
 
         assert self.parameters.shape == (self.K + 1, 1)
