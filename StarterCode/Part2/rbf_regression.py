@@ -107,7 +107,6 @@ class RBFRegression():
         # TODO: Implement your solution within the box
         X = np.empty([train_X.shape[0],self.K+1])
         X[:, 0] = 1
-        
         for i in range (1,self.K +1):
             X[:,i] = self._rbf_2d(X, i-1)
         self.parameters = np.linalg(np.linalg.inv(X.T @ X+ l2_coef@ np.identity(self.K+1)) @ X.T @train_Y)
