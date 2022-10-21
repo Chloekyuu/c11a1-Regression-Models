@@ -77,8 +77,8 @@ class RBFRegression():
         # TODO: Implement your solution within the box
         pred_Y = np.empty(X.shape[0],1)
         pred_Y.fill(self.parameters[0])
-        arr = np.sum(self._rbf_2d)
-        pred_Y = np.add(pred_Y,arr)
+        for i in range(1,self.K+1):
+            pred_Y = np.add(self.parameters[i] * self._rbf_2d(X,i))
         
         return pred_Y
         # ====================================================
