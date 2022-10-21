@@ -25,7 +25,7 @@ class RBFRegression():
         self.K = centers.shape[0]
 
         # Remember that we have K weights and 1 bias.
-        self.parameters = np.ones((self.K + 1, 1), dtype=np.float64) #float changed 
+        self.parameters = np.ones((self.K + 1, 1), dtype=np.float64)  #float changed 
 
     def _rbf_2d(self, X, rbf_i):
         """ This private method computes the output of the i'th 2D radial basis function given the inputs.
@@ -77,8 +77,9 @@ class RBFRegression():
         # TODO: Implement your solution within the box
         pred_Y = np.empty([X.shape[0],1])
         pred_Y.fill(self.parameters[0][0])
-        for i in range(1,self.K):
-            pred_Y = np.add(pred_Y,self.parameters[i][0] * self._rbf_2d(X,i))
+    
+        for i in range(1,self.K+1):
+            pred_Y = np.add(pred_Y,self.parameters[i][0] * self._rbf_2d(X,i-1))
         
         return pred_Y
         # ====================================================
@@ -107,9 +108,14 @@ class RBFRegression():
         # TODO: Implement your solution within the box
         X = np.empty([train_X.shape[0],self.K+1])
         X[:, 0] = 1
+       
         for i in range (1,self.K +1):
-            X[:,i] = self._rbf_2d(X, i-1)
-        self.parameters = np.linalg(np.linalg.inv(X.T @ X+ l2_coef@ np.identity(self.K+1)) @ X.T @train_Y)
+            X[:,i] = self._rbf_2d(train_X, i-1).flatten()
+        
+        
+        
+        self.parameters = (np.linalg.inv(X.T @ X+ l2_coef * np.identity(self.K+1)) @ X.T @train_Y)
+        
         # ====================================================
 
         assert self.parameters.shape == (self.K + 1, 1)
