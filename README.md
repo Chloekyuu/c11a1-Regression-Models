@@ -1,5 +1,4 @@
 # CSCC11 A1 - Regression Models
-
 > [Part 1: Exploring a Combination of Clustering and Linear Regression](https://www.notion.so/A1-Regression-Models-6ccf5654addc4ceaa9309b18a712dd44?pvs=21)
 > 
 > 
@@ -23,29 +22,20 @@ The graduate admissions dataset is used for this experiment.
 5. Define **Mean Absolute Error (MAE)** & **Mean Squared Error (MSE)** and explain their relevance.
 6. Find optimal parameters using training data and estimate **Chance of Admit** values for testing data. Report MAE and MSE.
     
-    <aside>
-    <img src="/icons/exclamation-mark_gray.svg" alt="/icons/exclamation-mark_gray.svg" width="40px" /> Mean squared error is more preferred because it is more sensitive to the outliners. It can better detect outliners. We squared the error, which means if a data point has larger error (i.e. is an outliner), it will have more weight on the final result (i.e. the mean error) for the whole data set.
-    
-    </aside>
-    
+    > Mean squared error is more preferred because it is more sensitive to the outliners. It can better detect outliners. We squared the error, which means if a data point has larger error (i.e. is an outliner), it will have more weight on the final result (i.e. the mean error) for the whole data set.
+    > 
 
 ### 2.2 Clustering-Based Linear Regression
 
 1. Calculate Silhouette Coefficient for K (# of clusters) ranging from 2 to 10. Determine the most appropriate value.
     
-    <aside>
-    <img src="/icons/exclamation-mark_gray.svg" alt="/icons/exclamation-mark_gray.svg" width="40px" /> 2 will be the most appropriate.
-    
-    </aside>
-    
+    > 2 will be the most appropriate.
+    > 
 2. Apply **K-Means clustering** with the determined number of clusters on the training dataset.
 3. Build **separate** linear regression models for each cluster.
     
-    <aside>
-    <img src="/icons/exclamation-mark_gray.svg" alt="/icons/exclamation-mark_gray.svg" width="40px" /> Different input and arguments for K-Means will result in a different error outcome. For example, if there are more outliners in our input data, the error will get larger.
-    
-    </aside>
-    
+    > Different input and arguments for K-Means will result in a different error outcome. For example, if there are more outliners in our input data, the error will get larger.
+    > 
 
 ### Files and Requirements
 
@@ -70,18 +60,12 @@ Inpainting is the process of predicting the corrupted pixels based on the surrou
 
 - The starter code provides basic checks for correctness, but thorough testing and parameter tuning are essential for optimal results.
     
-    <aside>
-    <img src="/icons/exclamation-mark_gray.svg" alt="/icons/exclamation-mark_gray.svg" width="40px" /> The image is not fixed well when we set `spacing=1` , but other values from 2 to 9 seems not much difference. The change of width will change the output image. Therefore, we need to test to find out the optimal value of RBF width.
-    
-    </aside>
-    
+    > The image is not fixed well when we set `spacing=1` , but other values from 2 to 9 seems not much difference. The change of width will change the output image. Therefore, we need to test to find out the optimal value of RBF width.
+    > 
 - Experiment with hyperparameters to understand their impact on the inpainting process.
     
-    <aside>
-    <img src="/icons/exclamation-mark_gray.svg" alt="/icons/exclamation-mark_gray.svg" width="40px" /> By increasing the amount of hyper-parameters, it is possible to build a better model. For example add a smooth term *λ*, we can avoid overfitting. However, we need to set the appropriate value of our hyper-parameters.
-    
-    </aside>
-    
+    > By increasing the amount of hyper-parameters, it is possible to build a better model. For example add a smooth term *λ*, we can avoid overfitting. However, we need to set the appropriate value of our hyper-parameters.
+    > 
 
 ### Files and Requirements
 
